@@ -21,7 +21,7 @@ const History = () => {
   if (loading) {
     return (
       <Layout>
-        <Header title="신고 내역 확인" onBack={handleBack} />
+        <Header title="신고 내역 확인" centered={true} onBack={handleBack} />
         <div style={{ padding: "20px", textAlign: "center" }}>로딩 중...</div>
       </Layout>
     );
@@ -30,7 +30,7 @@ const History = () => {
   if (error) {
     return (
       <Layout>
-        <Header title="신고 내역 확인" onBack={handleBack} />
+        <Header title="신고 내역 확인" centered={true} onBack={handleBack} />
         <div style={{ padding: "20px", textAlign: "center", color: "red" }}>
           {error}
         </div>
@@ -41,7 +41,7 @@ const History = () => {
   if (reports.length === 0) {
     return (
       <Layout>
-        <Header title="신고 내역 확인" onBack={handleBack} />
+        <Header title="신고 내역 확인" centered={true} onBack={handleBack} />
         <div style={{ padding: "20px", textAlign: "center" }}>
           신고 내역이 없습니다.
         </div>
@@ -51,7 +51,7 @@ const History = () => {
 
   return (
     <Layout>
-      <Header title="신고 내역 확인" onBack={handleBack} />
+      <Header title="신고 내역 확인" centered={true} onBack={handleBack} />
 
       <div style={{ padding: "16px 0" }}>
         {reports.map((report: Report) => (

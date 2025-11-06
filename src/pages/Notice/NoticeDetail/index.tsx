@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useNoticeDetail } from "@/services/hooks";
-import { BsChevronLeft } from "react-icons/bs";
+import Layout from "@/components/common/Layout";
+import Header from "@/components/common/Header";
 import * as S from "./style";
 import * as utils from "@/utils/utils";
 
@@ -17,66 +18,50 @@ const NoticeDetail = () => {
 
   if (loading) {
     return (
-      <S.Container>
-        <S.HeaderBar>
-          <S.BackButton onClick={handleBack}>
-            <BsChevronLeft />
-          </S.BackButton>
-          <S.Title>로딩 중...</S.Title>
-        </S.HeaderBar>
+      <Layout>
+        <Header title="로딩 중..." centered={true} onBack={handleBack} />
         <div style={{ padding: "20px", textAlign: "center" }}>
           공지사항을 불러오는 중...
         </div>
-      </S.Container>
+      </Layout>
     );
   }
 
   if (error) {
     return (
-      <S.Container>
-        <S.HeaderBar>
-          <S.BackButton onClick={handleBack}>
-            <BsChevronLeft />
-          </S.BackButton>
-          <S.Title>오류</S.Title>
-        </S.HeaderBar>
+      <Layout>
+        <Header title="오류" centered={true} onBack={handleBack} />
         <div style={{ padding: "20px", textAlign: "center", color: "red" }}>
           {error}
         </div>
-      </S.Container>
+      </Layout>
     );
   }
 
   if (!notice) {
     return (
-      <S.Container>
-        <S.HeaderBar>
-          <S.BackButton onClick={handleBack}>
-            <BsChevronLeft />
-          </S.BackButton>
-          <S.Title>공지사항을 찾을 수 없습니다</S.Title>
-        </S.HeaderBar>
+      <Layout>
+        <Header
+          title="공지사항을 찾을 수 없습니다"
+          centered={true}
+          onBack={handleBack}
+        />
         <div style={{ padding: "20px", textAlign: "center", color: "#999" }}>
           해당 공지사항을 찾을 수 없습니다.
         </div>
-      </S.Container>
+      </Layout>
     );
   }
 
   return (
-    <S.Container>
-      <S.HeaderBar>
-        <S.BackButton onClick={handleBack}>
-          <BsChevronLeft />
-        </S.BackButton>
-        <S.Title>{notice.title}</S.Title>
-      </S.HeaderBar>
-    
+    <Layout>
+      <Header title={notice.title} centered={true} onBack={handleBack} />
+
       <S.NoticeContentBox>
         <S.NoticeContent>{notice.content}</S.NoticeContent>
       </S.NoticeContentBox>
       <S.NoticeDate>{utils.formatDate(notice.created_at)}</S.NoticeDate>
-    </S.Container>
+    </Layout>
   );
 };
 

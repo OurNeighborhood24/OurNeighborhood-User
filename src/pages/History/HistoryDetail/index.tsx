@@ -1,10 +1,11 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { BsChevronLeft } from "react-icons/bs";
 import { useReportDetail } from "@/services/hooks";
+import Layout from "@/components/common/Layout";
+import Header from "@/components/common/Header";
 import Answer from "@/components/feature/Answer";
 import * as utils from "@/utils/utils";
-import * as S from "./style"
+import * as S from "./style";
 
 const HistoryDetail = () => {
   const navigate = useNavigate();
@@ -23,58 +24,42 @@ const HistoryDetail = () => {
 
   if (loading) {
     return (
-      <S.Container>
-        <S.HeaderBar>
-          <S.BackButton onClick={handleBack}>
-            <BsChevronLeft />
-          </S.BackButton>
-          <S.Title>로딩 중...</S.Title>
-        </S.HeaderBar>
+      <Layout>
+        <Header title="로딩 중..." centered={true} onBack={handleBack} />
         <div style={{ padding: "20px", textAlign: "center" }}>로딩 중...</div>
-      </S.Container>
+      </Layout>
     );
   }
 
   if (error) {
     return (
-      <S.Container>
-        <S.HeaderBar>
-          <S.BackButton onClick={handleBack}>
-            <BsChevronLeft />
-          </S.BackButton>
-          <S.Title>오류</S.Title>
-        </S.HeaderBar>
+      <Layout>
+        <Header title="오류" centered={true} onBack={handleBack} />
         <div style={{ padding: "20px", textAlign: "center" }}>{error}</div>
-      </S.Container>
+      </Layout>
     );
   }
 
   if (!reportDetail) {
     return (
-      <S.Container>
-        <S.HeaderBar>
-          <S.BackButton onClick={handleBack}>
-            <BsChevronLeft />
-          </S.BackButton>
-          <S.Title>신고를 찾을 수 없음</S.Title>
-        </S.HeaderBar>
+      <Layout>
+        <Header
+          title="신고를 찾을 수 없음"
+          centered={true}
+          onBack={handleBack}
+        />
         <div style={{ padding: "20px", textAlign: "center" }}>
           신고를 찾을 수 없습니다.
         </div>
-      </S.Container>
+      </Layout>
     );
   }
 
   const report = reportDetail.report;
 
   return (
-    <S.Container>
-      <S.HeaderBar>
-        <S.BackButton onClick={handleBack}>
-          <BsChevronLeft />
-        </S.BackButton>
-        <S.Title>{report.title}</S.Title>
-      </S.HeaderBar>
+    <Layout>
+      <Header title={report.title} centered={true} onBack={handleBack} />
 
       {report.image_url && (
         <S.ReportImage
@@ -109,7 +94,7 @@ const HistoryDetail = () => {
           ))}
         </div>
       )}
-    </S.Container>
+    </Layout>
   );
 };
 

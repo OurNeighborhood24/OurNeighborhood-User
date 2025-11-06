@@ -20,7 +20,7 @@ const Notice = () => {
   if (loading) {
     return (
       <Layout>
-        <Header title="서비스 공지" onBack={handleBack} />
+        <Header title="서비스 공지" centered={true} onBack={handleBack} />
         <div style={{ padding: "20px", textAlign: "center" }}>로딩 중...</div>
       </Layout>
     );
@@ -29,7 +29,7 @@ const Notice = () => {
   if (error) {
     return (
       <Layout>
-        <Header title="서비스 공지" onBack={handleBack} />
+        <Header title="서비스 공지" centered={true} onBack={handleBack} />
         <div style={{ padding: "20px", textAlign: "center", color: "red" }}>
           {error}
         </div>
@@ -39,7 +39,7 @@ const Notice = () => {
 
   return (
     <Layout>
-      <Header title="서비스 공지" onBack={handleBack} />
+      <Header title="서비스 공지" centered={true} onBack={handleBack} />
 
       <div style={{ padding: "16px 0" }}>
         {notices.length === 0 ? (

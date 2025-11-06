@@ -1,0 +1,90 @@
+/* 모바일 앱 최적화 전역 스타일 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  line-height: 1.5;
+  color: #333;
+  background: #f8f9fa;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 모바일 뷰포트 최적화 */
+@viewport {
+  width: device-width;
+  zoom: 1;
+}
+
+/* 모바일 터치 최적화 */
+button,
+input,
+textarea,
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0;
+}
+
+button {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+input,
+textarea {
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* 스크롤바 숨기기 (모바일 네이티브 느낌) */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Safe Area 지원 */
+.safe-area-top {
+  padding-top: env(safe-area-inset-top);
+}
+
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* 모바일 반응형 브레이크포인트 */
+@media (max-width: 480px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 360px) {
+  html {
+    font-size: 13px;
+  }
+}
+
+/* 가로 모드 대응 */
+@media (orientation: landscape) and (max-height: 500px) {
+  .landscape-hide {
+    display: none;
+  }
+}

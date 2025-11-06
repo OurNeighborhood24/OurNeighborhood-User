@@ -80,8 +80,7 @@ const Report = () => {
       const result = await submitReport(formData);
       alert("신고가 성공적으로 접수되었습니다!");
       navigate("/main");
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const handleBack = () => {
@@ -95,7 +94,7 @@ const Report = () => {
 
   return (
     <Layout>
-      <Header title="신고하기" onBack={handleBack} />
+      <Header title="신고하기" centered={true} onBack={handleBack} />
 
       <ImageUpload
         image={formData.image}

@@ -1,69 +1,133 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  background-color: white;
-  width: 393px;
-  height: 852px;
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 428px;
+  min-height: 100vh;
+  min-height: 100dvh;
   position: relative;
   margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  /* Safe Area 지원 */
+  padding-top: calc(20px + env(safe-area-inset-top));
+  padding-bottom: calc(20px + env(safe-area-inset-bottom));
+
+  @media (max-width: 480px) {
+    padding: 16px;
+    padding-top: calc(16px + env(safe-area-inset-top));
+    padding-bottom: calc(16px + env(safe-area-inset-bottom));
+  }
+
+  @media (max-width: 360px) {
+    padding: 12px;
+    padding-top: calc(12px + env(safe-area-inset-top));
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  }
 `;
 
 export const LogoContainer = styled.div`
-  position: absolute;
-  left: 62px;
-  top: 86px;
-  width: 269px;
-  height: 53px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 60px;
+
+  @media (max-width: 480px) {
+    margin-bottom: 40px;
+  }
+
+  @media (max-width: 360px) {
+    margin-bottom: 30px;
+  }
 `;
 
 export const LogoImage = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 280px;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+
+  @media (max-width: 480px) {
+    width: 240px;
+  }
+
+  @media (max-width: 360px) {
+    width: 200px;
+  }
 `;
 
 export const FormContainer = styled.div`
-  position: absolute;
-  left: 50px;
-  top: 167px;
-  width: 293px;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  align-items: flex-end;
+  gap: 24px;
+
+  @media (max-width: 480px) {
+    gap: 20px;
+  }
+
+  @media (max-width: 360px) {
+    gap: 16px;
+  }
 `;
 
 export const InputContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  align-items: flex-start;
+  gap: 12px;
 `;
 
 export const Label = styled.label`
   font-family: "Pretendard", sans-serif;
-  font-weight: 500;
-  font-size: 14px;
+  font-weight: 600;
+  font-size: 15px;
   line-height: 20px;
-  color: #222222;
+  color: #333;
+  margin-left: 4px;
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
 `;
 
 export const InputBox = styled.div`
   width: 100%;
-  background-color: #f6f6f6;
-  border: 1px solid #eeeeee;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
   border-radius: 12px;
   position: relative;
+  transition: all 0.2s ease;
+
+  &:focus-within {
+    border-color: #007aff;
+    background-color: #ffffff;
+  }
+
+  @media (max-width: 480px) {
+    border-radius: 10px;
+  }
 `;
 
 export const InputWrapper = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   padding: 16px;
   width: 100%;
   box-sizing: border-box;
+
+  @media (max-width: 480px) {
+    padding: 14px;
+  }
+
+  @media (max-width: 360px) {
+    padding: 12px;
+  }
 `;
 
 export const Input = styled.input`
@@ -75,10 +139,14 @@ export const Input = styled.input`
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #000000;
+  color: #333;
 
   &::placeholder {
-    color: #000000;
+    color: #999;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 15px;
   }
 `;
 
@@ -86,30 +154,32 @@ export const PasswordToggle = styled.button`
   background: none;
   border: none;
   cursor: pointer;
-  color: #666666;
-  font-size: 16px;
-  width: 20px;
-  height: 20px;
+  color: #666;
+  font-size: 18px;
+  width: 24px;
+  height: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
 
-  &:hover {
-    opacity: 1;
+  &:active {
+    background: rgba(0, 0, 0, 0.05);
   }
 `;
 
 export const LoginButton = styled.button`
   width: 100%;
-  background-color: #1860f0;
+  background-color: #007aff;
   color: white;
   border: none;
   border-radius: 12px;
-  padding: 16px 24px;
+  padding: 18px 24px;
   font-family: "Pretendard", sans-serif;
-  font-weight: 500;
-  font-size: 18px;
+  font-weight: 600;
+  font-size: 17px;
   line-height: 24px;
   text-align: center;
   cursor: pointer;
@@ -117,48 +187,69 @@ export const LoginButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 8px;
+  -webkit-tap-highlight-color: transparent;
 
-  &:hover {
-    background-color: #1450d0;
+  &:active:not(:disabled) {
+    background-color: #0051d5;
+    transform: scale(0.98);
   }
 
   &:disabled {
-    background-color: #9ca3af;
+    background-color: #c7c7cc;
     cursor: not-allowed;
+    transform: none;
+  }
+
+  @media (max-width: 480px) {
+    padding: 16px 20px;
+    font-size: 16px;
+    border-radius: 10px;
   }
 `;
 
 export const ErrorMessage = styled.div`
   width: 100%;
-  padding: 12px 16px;
-  background-color: #fef2f2;
-  border: 1px solid #fecaca;
-  border-radius: 8px;
-  color: #dc2626;
+  padding: 14px 16px;
+  background-color: #ffebee;
+  border: 1px solid #ffcdd2;
+  border-radius: 10px;
+  color: #d32f2f;
   font-family: "Pretendard", sans-serif;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 14px;
   line-height: 20px;
   text-align: center;
+
+  @media (max-width: 480px) {
+    padding: 12px 14px;
+    font-size: 13px;
+  }
 `;
 
 export const SignupText = styled.p`
   width: 100%;
   font-family: "Pretendard", sans-serif;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 24px;
-  color: #888888;
-  text-align: right;
-  margin: 0;
+  color: #666;
+  text-align: center;
+  margin: 8px 0 0 0;
 
   .signup-link {
-    color: #1860f0;
+    color: #007aff;
     cursor: pointer;
     text-decoration: none;
+    font-weight: 600;
+    -webkit-tap-highlight-color: transparent;
 
-    &:hover {
-      text-decoration: underline;
+    &:active {
+      opacity: 0.7;
     }
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
   }
 `;
