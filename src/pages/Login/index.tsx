@@ -48,8 +48,6 @@ const Login = () => {
         password: formData.password,
       });
 
-      // 로그인 성공시 사용자 정보 저장 (일단 기본값으로 설정)
-      // 실제로는 API에서 사용자 정보를 받아와야 함
       setUser({
         user_id: 1,
         role: "USER",

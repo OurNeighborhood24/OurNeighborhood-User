@@ -256,7 +256,6 @@ const Map = () => {
     return R * c;
   };
 
-  // 신고 데이터를 지도에 마커로 표시
   useEffect(() => {
     if (!map || !window.kakao || !reports.length) return;
 
@@ -267,7 +266,7 @@ const Map = () => {
     const newMarkers: KakaoMarker[] = [];
 
     reports.forEach((report: ReportMapData) => {
-      if (report.latitude === 0 && report.longitude === 0) return; // 좌표가 없는 경우 스킵
+      if (report.latitude === 0 && report.longitude === 0) return;
 
       const markerPosition = new kakao.maps.LatLng(
         report.latitude,

@@ -36,7 +36,7 @@ export const validateReportForm = (values: ReportFormData) => {
 export const validateImageFile = (file: File | null) => {
   if (!file) return { isValid: true, error: null };
 
-  const maxSize = 5 * 1024 * 1024; // 5MB
+  const maxSize = 5 * 1024 * 1024;
   const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif"];
 
   if (file.size > maxSize) {
@@ -86,5 +86,5 @@ export const getStatusColor = (status: string) => {
     CHECKED: "#000", 
     PROCESSING: "#000", 
   };
-  return colorMap[status] || "#343a40"; // 기본 검정색
+  return colorMap[status] || "#343a40";
 };
