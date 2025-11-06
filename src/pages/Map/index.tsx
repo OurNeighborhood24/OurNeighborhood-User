@@ -77,23 +77,7 @@ const Map = () => {
         "https://dapi.kakao.com/v2/maps/sdk.js?appkey=efaa692513762c579bbee53cf618d68d";
       script.async = true;
 
-      script.onload = () => {
-        console.log("카카오 스크립트 로드 완료");
-        console.log("window.kakao:", window.kakao);
-        console.log("window.kakao.maps:", window.kakao?.maps);
-
-        if (window.kakao && window.kakao.maps) {
-          console.log("카카오 지도 객체 생성 성공");
-          resolve();
-        } else {
-          console.error("카카오 지도 객체 생성 실패");
-          reject(new Error("카카오 지도 객체가 생성되지 않았습니다"));
-        }
-      };
-
       script.onerror = (error) => {
-        console.error("스크립트 로드 에러:", error);
-        console.error("스크립트 URL:", script.src);
         reject(new Error("카카오 지도 스크립트 로드 실패"));
       };
 
@@ -145,10 +129,6 @@ const Map = () => {
               level: 7,
             };
 
-            console.log("기본 위치로 지도 생성 시작", {
-              lat: 37.5665,
-              lng: 126.978,
-            });
             const newMap = new kakao.maps.Map(mapContainer.current, mapOption);
             setMap(newMap);
 

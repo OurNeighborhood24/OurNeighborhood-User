@@ -19,10 +19,6 @@ class TokenManager {
 const createCustomAxios = (): AxiosInstance => {
   const baseURL = import.meta.env.VITE_API_BASE_URL;
 
-  if (!baseURL) {
-    console.error("VITE_API_BASE_URL is not defined in environment variables");
-  }
-
   const instance = axios.create({
     baseURL,
     timeout: 10000,

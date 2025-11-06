@@ -76,8 +76,7 @@ const SignUp = () => {
       );
       navigate("/");
     } catch (error) {
-      // 에러는 useRegister 훅에서 이미 처리됨
-      console.error("Registration failed:", error);
+      console.error(error);
     }
   };
 

@@ -51,7 +51,7 @@ export const getMapReports = async (
     );
     return response.data;
   } catch (error) {
-    console.error("지도 신고 조회 실패:", error);
+    console.error(error);
     throw new Error("지도 신고 데이터를 불러올 수 없습니다.");
   }
 };

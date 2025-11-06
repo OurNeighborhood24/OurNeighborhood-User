@@ -19,7 +19,7 @@ export const authService = {
     try {
       await customAxios.delete("/auth/logout");
     } catch (error) {
-      console.error("Logout API call failed:", error);
+      console.error(error);
     } finally {
       TokenManager.removeAccessToken();
     }
