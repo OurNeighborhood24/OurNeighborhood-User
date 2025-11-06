@@ -74,7 +74,7 @@ const Map = () => {
       const script = document.createElement("script");
       script.type = "text/javascript";
       script.src =
-        "https://dapi.kakao.com/v2/maps/sdk.js?appkey=efaa692513762c579bbee53cf618d68d&libraries=services";
+        "https://dapi.kakao.com/v2/maps/sdk.js?appkey=efaa692513762c579bbee53cf618d68d";
       script.async = true;
 
       script.onload = () => {
