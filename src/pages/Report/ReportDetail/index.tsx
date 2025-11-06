@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Layout from "@/components/common/Layout";
 import Header from "@/components/common/Header";

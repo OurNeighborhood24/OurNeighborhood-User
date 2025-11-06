@@ -9,6 +9,7 @@ import ImageUpload from "@/components/feature/ImageUpload";
 import FormField from "@/components/feature/FormField";
 import { useReport, useCategories } from "@/services/hooks/useReport";
 import { useGeolocation } from "@/services/hooks/useGeolocation";
+import { useCategoryRecommendation } from "@/services/hooks/useCategoryRecommendation";
 import { ReportFormData } from "@/types";
 import * as utils from "@/utils/utils";
 
@@ -17,6 +18,13 @@ const Report = () => {
   const { submitReport, loading, error } = useReport();
   const { categories, isLoading: categoriesLoading } = useCategories();
   const { getCurrentLocation } = useGeolocation();
+  const {
+    loading: recommendLoading,
+    error: recommendError,
+    recommendation,
+    getRecommendation,
+    clearRecommendation,
+  } = useCategoryRecommendation();
 
   const [formData, setFormData] = useState<ReportFormData>({
     title: "",
@@ -30,6 +38,7 @@ const Report = () => {
 
   const [locationLoading, setLocationLoading] = useState(false);
   const [locationError, setLocationError] = useState<string | null>(null);
+  const [showRecommendation, setShowRecommendation] = useState(false);
 
   useEffect(() => {
     handleGetLocation();
@@ -59,6 +68,31 @@ const Report = () => {
       ...prev,
       [field]: value,
     }));
+
+    if (field === "description") {
+      clearRecommendation();
+      setShowRecommendation(false);
+    }
+  };
+
+  const handleGetCategoryRecommendation = async () => {
+    if (!formData.description || formData.description.trim().length < 5) {
+      alert("카테고리 추천을 받으려면 신고 내용을 최소 5자 이상 입력해주세요.");
+      return;
+    }
+
+    const result = await getRecommendation(formData.description);
+    if (result) {
+      setShowRecommendation(true);
+
+      const recommendedCategory = categories.find(
+        (cat: any) => cat.category_name === result.category
+      );
+
+      if (recommendedCategory) {
+        handleInputChange("category_id", recommendedCategory.category_id);
+      }
+    }
   };
 
   const handleImageChange = (file: File | null) => {
@@ -172,6 +206,61 @@ const Report = () => {
           placeholder="신고할 내용을 입력해 주세요."
           type="textarea"
         />
+        <div style={{ marginTop: "8px" }}>
+          <Button
+            variant="secondary"
+            onClick={handleGetCategoryRecommendation}
+            disabled={
+              recommendLoading ||
+              !formData.description ||
+              formData.description.trim().length < 5
+            }
+          >
+            {recommendLoading ? "분석 중..." : "AI 카테고리 추천받기"}
+          </Button>
+        </div>
+
+        {showRecommendation && recommendation && (
+          <div
+            style={{
+              marginTop: "12px",
+              padding: "12px",
+              backgroundColor: "#f0f9ff",
+              border: "1px solid #bae6fd",
+              borderRadius: "8px",
+              fontSize: "14px",
+            }}
+          >
+            <div
+              style={{
+                fontWeight: "600",
+                color: "#0369a1",
+                marginBottom: "6px",
+              }}
+            >
+              추천 카테고리: {recommendation.category}
+            </div>
+            <div style={{ color: "#0c4a6e", fontSize: "13px" }}>
+              {recommendation.reason}
+            </div>
+          </div>
+        )}
+
+        {recommendError && (
+          <div
+            style={{
+              marginTop: "8px",
+              padding: "12px",
+              backgroundColor: "#fee",
+              border: "1px solid #fca5a5",
+              borderRadius: "8px",
+              fontSize: "13px",
+              color: "#c33",
+            }}
+          >
+            {recommendError}
+          </div>
+        )}
       </FormField>
 
       <FormField label="카테고리 선택">
