@@ -58,7 +58,14 @@ const NoticeDetail = () => {
       <Header title={notice.title} centered={true} onBack={handleBack} />
 
       <S.NoticeContentBox>
-        <S.NoticeContent>{notice.content}</S.NoticeContent>
+        <S.NoticeContent>
+          {notice.content.split("\\n").map((line, index) => (
+            <span key={index}>
+              {line}
+              {index < notice.content.split("\\n").length - 1 && <br />}
+            </span>
+          ))}
+        </S.NoticeContent>
       </S.NoticeContentBox>
       <S.NoticeDate>{utils.formatDate(notice.created_at)}</S.NoticeDate>
     </Layout>
