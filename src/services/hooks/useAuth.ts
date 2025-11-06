@@ -2,7 +2,6 @@ import { useState, useCallback } from "react";
 import { authService, userService } from "@/services/api";
 import { LoginRequest, RegisterRequest, LoadingState } from "@/types";
 
-// 로그인 훅
 export const useLogin = () => {
   const [state, setState] = useState<LoadingState>("idle");
   const [error, setError] = useState<string | null>(null);
@@ -32,7 +31,6 @@ export const useLogin = () => {
   };
 };
 
-// 회원가입 훅
 export const useRegister = () => {
   const [state, setState] = useState<LoadingState>("idle");
   const [error, setError] = useState<string | null>(null);
@@ -62,7 +60,6 @@ export const useRegister = () => {
   };
 };
 
-// 로그아웃 훅
 export const useLogout = () => {
   const [state, setState] = useState<LoadingState>("idle");
 
@@ -73,7 +70,6 @@ export const useLogout = () => {
       await authService.logout();
       setState("success");
     } catch (err) {
-      // 로그아웃은 실패해도 로컬 토큰은 이미 제거됨
       setState("success");
     }
   }, []);
