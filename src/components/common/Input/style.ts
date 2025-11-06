@@ -1,14 +1,23 @@
 import styled from "styled-components";
 
 export const InputContainer = styled.div`
-  width: 293px;
+  width: 100%;
   background-color: #f6f6f6;
   border: 1px solid #eeeeee;
   border-radius: 12px;
-  padding: 16px;
+  padding: 14px 16px;
   display: flex;
   align-items: center;
   gap: 10px;
+  box-sizing: border-box;
+
+  @media (max-width: 480px) {
+    padding: 12px 14px;
+  }
+
+  @media (max-width: 360px) {
+    padding: 10px 12px;
+  }
 `;
 
 export const StyledInput = styled.input`
@@ -27,11 +36,22 @@ export const StyledInput = styled.input`
 `;
 
 export const TextAreaContainer = styled.div`
-  width: 293px;
-  height: 133px;
+  width: 100%;
+  height: 120px;
   background-color: #f6f6f6;
   border-radius: 12px;
-  padding: 19px 16px;
+  padding: 16px;
+  box-sizing: border-box;
+
+  @media (max-width: 480px) {
+    height: 110px;
+    padding: 14px;
+  }
+
+  @media (max-width: 360px) {
+    height: 100px;
+    padding: 12px;
+  }
 `;
 
 export const StyledTextArea = styled.textarea`

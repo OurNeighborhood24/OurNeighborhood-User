@@ -1,19 +1,30 @@
 import styled from "styled-components";
 
 export const ImageUploadContainer = styled.div`
-  width: 293px;
-  height: 230px;
+  width: 100%;
+  height: 200px;
   background-color: #f6f6f6;
-  border-radius: 5px;
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 44px;
+  margin-bottom: 32px;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 
   &:hover {
     background-color: #eeeeee;
+  }
+
+  @media (max-width: 480px) {
+    height: 180px;
+    margin-bottom: 28px;
+  }
+
+  @media (max-width: 360px) {
+    height: 160px;
+    margin-bottom: 24px;
   }
 `;
 
@@ -21,7 +32,7 @@ export const ImageIcon = styled.div`
   font-size: 40px;
   color: #666666;
   margin-bottom: 10px;
-  img{
+  img {
     width: 50px;
     height: auto;
   }
@@ -43,5 +54,5 @@ export const PreviewImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 5px;
+  border-radius: 12px;
 `;

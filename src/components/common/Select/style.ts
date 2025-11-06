@@ -1,19 +1,29 @@
 import styled from "styled-components";
 
 export const SelectContainer = styled.div`
-  width: 293px;
+  width: 100%;
   background-color: #f6f6f6;
   border: 1px solid #eeeeee;
   border-radius: 12px;
-  padding: 16px;
+  padding: 14px 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
   position: relative;
+  box-sizing: border-box;
+  transition: background-color 0.2s ease;
 
   &:hover {
     background-color: #eeeeee;
+  }
+
+  @media (max-width: 480px) {
+    padding: 12px 14px;
+  }
+
+  @media (max-width: 360px) {
+    padding: 10px 12px;
   }
 `;
 
